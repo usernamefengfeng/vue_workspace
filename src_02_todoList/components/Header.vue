@@ -22,27 +22,23 @@
 
     methods: {
       add () {
+        //根据输入的数据准备一个todo对象
         let title = this.title.trim()
-
         if (!title) {
           alert('请先输入')
           return
         }
-
-        //定义一个todo对象
         const todo = {
           id: Date.now(),
           complete: false,
           title,
         }
-
         //添加todo
         this.addTodo(todo)
-
         //清空输入
         this.title = ''
-      }
-    },
+      },
+    }
   }
 </script>
 
@@ -56,7 +52,6 @@
     border-radius: 4px;
     padding: 4px 7px;
   }
-
   .todo-header input:focus {
     outline: none;
     border-color: rgba(82, 168, 236, 0.8);

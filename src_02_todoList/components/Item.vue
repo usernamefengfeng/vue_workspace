@@ -1,12 +1,13 @@
 <template>
-  <li :style="{background: bgColor}" 
-      @mouseenter="handleEnter(true)" 
+  <li :style="{background:bgColor}"
+      @mouseenter="handleEnter(true)"
       @mouseleave="handleEnter(false)">
     <label>
       <input type="checkbox" v-model="isCheck"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none" v-show="isShow" @click="deleteItem">删除</button>
+    <button class="btn btn-danger" style="display:none" 
+            v-show="isShow" @click="deleteItem">删除</button>
   </li>
 </template>
 
@@ -20,15 +21,15 @@
   export default {
     props: {
       todo: Object,
-      updateTodo: Function,
       deleteTodo: Function,
       index: Number,
+      updateTodo: Function,
     },
 
     data() {
       return {
-        bgColor: 'white',
-        isShow: false,
+        bgColor:'white',
+        isShow:false,
       }
     },
 
@@ -43,7 +44,6 @@
         }
       },
 
-      //删除todo
       deleteItem () {
         if (confirm('确定删除吗？')) {
           this.deleteTodo(this.index)
@@ -53,10 +53,10 @@
 
     computed: {
       isCheck: {
-        get () {  //checkout是否勾选, 看接收的todo是否已经完成
+        get () { //checkout是否勾选，接受的todo是否完成
           return this.todo.complete
         },
-        set (value) {  //当用户操作checkbox界面时调用
+        set (value) {  //当用户操作checkbox界面时调用该方法
           this.updateTodo(this.todo,value)
         }
       }

@@ -14,21 +14,22 @@
   export default {
     props: {
       todos: Array,
-      seleteAll: Function,
+      selectAll: Function,
       deleteCompleted: Function,
     },
 
     computed: {
-      completedCount () {  //已完成1/
-        return this.todos.reduce((pre,todo) => pre + (todo.complete? 1:0),0)
+      completedCount () {
+        return this.todos.reduce((pre,todo)=> pre + (todo.complete? 1:0),0)
       },
 
       checkAll: {
         get () {
           return this.todos.length === this.completedCount && this.completedCount>0
         },
+
         set (value) {
-          this.seleteAll(value)
+          this.selectAll(value)
         }
       }
     },
@@ -36,7 +37,7 @@
 </script>
 
 <style scoped>
-  /* footer */
+  /*footer*/
   .todo-footer {
     height: 40px;
     line-height: 40px;
