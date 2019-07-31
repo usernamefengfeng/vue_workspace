@@ -6,12 +6,13 @@
       <input type="checkbox" v-model="isCheck"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" style="display:none" 
+    <button class="btn btn-danger"
             v-show="isShow" @click="deleteItem">删除</button>
   </li>
 </template>
 
 <script type="text/ecmascript-6">
+import PubSub from 'pubsub-js'
 /* 
   模板中读取数据的来源:
     data: 自身可变数据
@@ -21,9 +22,7 @@
   export default {
     props: {
       todo: Object,
-      deleteTodo: Function,
       index: Number,
-      updateTodo: Function,
     },
 
     data() {
@@ -46,7 +45,8 @@
 
       deleteItem () {
         if (confirm('确定删除吗？')) {
-          this.deleteTodo(this.index)
+          //this.deleteTodo(this.index)
+          this.$globalEventBus.$emit('deleteTodo',this.index)
         }
       }
     },
@@ -57,7 +57,8 @@
           return this.todo.complete
         },
         set (value) {  //当用户操作checkbox界面时调用该方法
-          this.updateTodo(this.todo,value)
+          //this.updateTodo(this.todo,value)
+          PubSub.publish('updateTodo',{todo: this.todo,complete: value})
         }
       }
     },

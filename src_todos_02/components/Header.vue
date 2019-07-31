@@ -7,13 +7,7 @@
 
 <script type="text/ecmascript-6">
   export default {
-    props: {
-      addTodo: {
-        type: Function,
-        required: true,
-      }
-    },
-
+    
     data() {
       return {
         title: ''
@@ -34,7 +28,10 @@
           title,
         }
         //添加todo
-        this.addTodo(todo)
+        //this.addTodo(todo)
+        //分发自定义事件
+        this.$emit('addTodo',todo)
+
         //清空输入
         this.title = ''
       },

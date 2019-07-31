@@ -8,9 +8,7 @@
 <script type="text/ecmascript-6">
 import Item from './Item'
   export default {
-
     props: ['todos','deleteTodo','updateTodo'],
-
     components: {
       Item
     }
